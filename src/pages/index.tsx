@@ -5,7 +5,7 @@ import Tine from '../components/Tine'
 export default function Home() {
   return <>
     <Navbar />
-    <Tine />
+    <Tine note="a" />
     <div>hello world</div>
   </>
 }
