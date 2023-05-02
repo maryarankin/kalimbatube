@@ -20,7 +20,27 @@ const Tine: FC<TineProps> = (props): JSX.Element => {
     switch (props.note) {
       case 'a':
         times = [0, 0.3]
-        break
+        break;
+      case 'b':
+        times = [0.3, 0.6]
+        break;
+      case 'c':
+        times = [0.9, 1.2]
+        break;
+      case 'd':
+        times = [1.2, 1.5]
+        break;
+      case 'e':
+        times = [1.5, 1.8]
+        break;
+      case 'f':
+        times = [1.8, 2.1]
+        break;
+      case 'g':
+        times = [2.1, 2.4]
+        break;
+      default:
+        return null
     }
     //string to add to audio src to limit time
     let timesString = `#t=${times[0]},${times[1]}`
@@ -28,7 +48,7 @@ const Tine: FC<TineProps> = (props): JSX.Element => {
   }
 
   return <>
-    <input type="button" value="PLAY" onClick={play} />
+    <input type="button" value={`PLAY ${props.note}`} onClick={play} />
     <audio
       id="audio"
       src={`537519__a_curious_coder__kalimba-scale-descending.wav${noteTimes()}`}>
