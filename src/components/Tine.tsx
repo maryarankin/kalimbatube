@@ -10,7 +10,7 @@ const Tine: FC<TineProps> = (props): JSX.Element => {
   const soundPath = ''
 
   const play = () => {
-    let audio: HTMLAudioElement = document.getElementById("audio") as HTMLAudioElement
+    let audio: HTMLAudioElement = document.getElementById(`note ${props.note}`) as HTMLAudioElement
     audio.play()
   }
 
@@ -19,25 +19,25 @@ const Tine: FC<TineProps> = (props): JSX.Element => {
     console.log(props.note)
     switch (props.note) {
       case 'a':
-        times = [0, 0.3]
+        times = [0, 0.4]
         break;
       case 'b':
-        times = [0.3, 0.6]
+        times = [0.4, 0.8]
         break;
       case 'c':
-        times = [0.9, 1.2]
+        times = [0.8, 1.2]
         break;
       case 'd':
-        times = [1.2, 1.5]
+        times = [1.2, 1.6]
         break;
       case 'e':
-        times = [1.5, 1.8]
+        times = [1.6, 2.0]
         break;
       case 'f':
-        times = [1.8, 2.1]
+        times = [2.0, 2.4]
         break;
       case 'g':
-        times = [2.1, 2.4]
+        times = [2.4, 2.8]
         break;
       default:
         return null
@@ -48,9 +48,10 @@ const Tine: FC<TineProps> = (props): JSX.Element => {
   }
 
   return <>
+    {console.log(noteTimes())}
     <input type="button" value={`PLAY ${props.note}`} onClick={play} />
     <audio
-      id="audio"
+      id={`note ${props.note}`}
       src={`537519__a_curious_coder__kalimba-scale-descending.wav${noteTimes()}`}>
     </audio>
     {/* <button onClick={tineSound.play}>TineSound</button> */}
