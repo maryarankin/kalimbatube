@@ -1,10 +1,13 @@
-import { FC, useRef } from "react"
+import { FC, SetStateAction, useRef, Dispatch } from "react"
+
+export type Note = 'a' | 'b' | 'c' | 'd' | 'e' | 'f' | 'g'
 
 type TineProps = {
-  note: 'a' | 'b' | 'c' | 'd' | 'e' | 'f' | 'g'
+  note: Note,
+  setNotesHistory: Dispatch<SetStateAction<Note[]>>
 }
 
-const Tine: FC<TineProps> = (props): JSX.Element => {
+export const Tine: FC<TineProps> = (props): JSX.Element => {
   // let tineSound = useRef(document.createElement('HTMLAudioElement'))
   // ...
   // let tineSound = new Audio('537519__a_curious_coder__kalimba-scale-descending.wav')
@@ -12,15 +15,19 @@ const Tine: FC<TineProps> = (props): JSX.Element => {
   const soundPath = ''
 
   const play = () => {
+    props.setNotesHistory(notesHistory => {
+      return [...notesHistory, props.note]
+    })
     let audio: HTMLAudioElement = document.getElementById(`note${props.note}`) as HTMLAudioElement
+    
     audio.play()
   }
   
   const noteTimes = () => {
     let time = {
     'a': [0, 0.3],
-    'b': [0.3, 0.6],
-    'c': [0.3, 0.6],
+    'b': [0.4, 0.8],
+    'c': [0.9, 1.2],
     'd': [0.3, 0.6],
     'e': [0.3, 0.6],
     'f': [0.3, 0.6],
@@ -34,7 +41,7 @@ const Tine: FC<TineProps> = (props): JSX.Element => {
 
   return <>
     {console.log(noteTimes())}
-    <input type="button" value={`PLAY ${props.note}`} onClick={play} />
+    <input className="bg-slate-300 mb-5 w-4 rounded-b-lg text-black" type="button" value={`${props.note}`} onClick={play} />
     <audio
       id={`note${props.note}`}
       src={`537519__a_curious_coder__kalimba-scale-descending.wav${noteTimes()}`}>
@@ -44,5 +51,3 @@ const Tine: FC<TineProps> = (props): JSX.Element => {
     {/* <button onClick={tineSound.current.play}>TineSound</button> */}
   </>
 }
-
-export default Tine

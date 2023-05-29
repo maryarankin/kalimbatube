@@ -1,17 +1,11 @@
-import Image from 'next/image'
 import Navbar from '../components/Navbar'
-import Tine from '../components/Tine'
+import KalimbaPlayer from '../components/KalimbaPlayer'
+
 
 export default function Home() {
   return <>
     <Navbar />
-    <Tine note="a" />
-    <Tine note="b" />
-    <Tine note="c" />
-    <Tine note="d" />
-    <Tine note="e" />
-    <Tine note="f" />
-    <Tine note="g" />
+    <div className="flex h-full mt-20 justify-center"><KalimbaPlayer /></div>
     <div>hello world</div>
   </>
 }
